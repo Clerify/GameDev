@@ -1,0 +1,45 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Test : MonoBehaviour
+{
+    //Declare veriable for the playerbody
+    Rigidbody2D _rb;
+    
+    //Walk speed on the character
+    float _Walkspeed;
+    //Input Horizontal
+    float _inputHorizontal;
+    //Input Vertical
+    float _inputVertical;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        _rb = gameObject.GetComponent<Rigidbody2D>();
+
+        _Walkspeed = 5.5f;
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        _inputHorizontal = Input.GetAxisRaw("Horizontal");
+        _inputVertical = Input.GetAxisRaw("Vertical");
+
+        if(_inputHorizontal != 0)
+        {
+            _rb.AddForce(new Vector2(_inputHorizontal * _Walkspeed, 0f));
+        }
+
+        if(_inputVertical !=0)
+        {
+            _rb.AddForce(new Vector2(0f, _inputVertical * _Walkspeed));
+        }
+
+
+
+    }
+}
